@@ -18,27 +18,46 @@ class Card:
 class Deck:
 	def __init__(self):
 		self.cards = [Card(suit, value) for suit in Card.suits for value in Card.values]
-		# self._deal = 
 	
-	def __repr__(self):
-		return f'Deck of {self.cards.count()}'
+	def __repr__(self):  
+		return f'Deck of {len(self.cards)} cards'
 
 	def count(self):
 		return len(self.cards)
 
 	def _deal(self, amount):
-		if self.cards.count() != 0	
-			for x in range(amount):
-				self.cards.pop(0)
-		raise ValueError ('All cards have been dealt.')
+		if len(self.cards) == 0:
+			raise ValueError('All cards have been dealt')
+		elif amount < len(self.cards):
+			cards = self.cards[:amount]
+			self.cards = self.cards[amount:]
+			return cards
+		else:
+			cards = self.cards[:len(self.cards)]
+			self.cards = self.cards[len(self.cards):]
+			return cards
 
 	def shuffle(self):
-		if len(self.cards) == 52: 
-			return random.shuffle(self.cards)
-		raise ValueError ('Only full decks can be shuffled')
+		if len(self.cards) != 52:
+			raise ValueError ('Only full decks can be shuffled')
+		else:
+			random.shuffle(self.cards)
 
-first_deck = Deck()
-print(first_deck.cards)
-first_deck._deal(10)
-print(first_deck.count())
+	def deal_card(self):
+		return self._deal(1)
+
+	def deal_hand(self, amount):
+		return self._deal(amount)
+
+
+
+	
+
+
+
+
+
+
+	
+
 
