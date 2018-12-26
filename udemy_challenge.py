@@ -49,9 +49,12 @@ class Deck:
 	def deal_hand(self, amount):
 		return self._deal(amount)
 
+if __name__ == '__main__':
+	first_deck = Deck()
+	print(first_deck)
 
 
-	
+
 
 
 
